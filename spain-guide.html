@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西班牙生活指南 · 瓦伦西亚 & 萨贡托</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #080808;
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #131313;
+  --bg-card: #1a1a1a;
+  --text-primary: #f0ece6;
+  --text-secondary: #a8a49e;
+  --text-muted: #6b6762;
+  --accent-silver: #b8b4ae;
+  --accent-chrome: #d4d0c8;
+  --accent-gold: #c8a45c;
+  --accent-gold-light: #e0c278;
+  --accent-bronze: #8b7355;
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-medium: rgba(255,255,255,0.10);
+  --border-active: rgba(200,164,92,0.4);
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-elevated: 0 1px 0 rgba(255,255,255,0.04), 0 8px 48px rgba(0,0,0,0.6);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-reveal: 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-deep);
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Noise overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-silver); }
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+
+.display-xl {
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--accent-chrome);
+}
+
+.display-lg {
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.display-md {
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--accent-gold);
+}
+
+.body-lg {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.body-md {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.caption {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 4vw;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition-smooth), backdrop-filter var(--transition-smooth);
+  mix-blend-mode: difference;
+}
+
+.nav.scrolled {
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
+  mix-blend-mode: normal;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-chrome);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: width var(--transition-smooth);
+}
+
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 4vw 4rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,164,92,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(180,150,100,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(200,180,140,0.03) 0%, transparent 60%),
+    var(--bg-deep);
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('assets/images/valencia-arts-sciences.jpg') center/cover no-repeat;
+  opacity: 0.12;
+  filter: brightness(0.6) saturate(0.3);
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8,8,8,0.85) 0%, var(--bg-deep) 100%);
+  opacity: 0.8;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--accent-chrome);
+  margin-bottom: 1rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-gold-light);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.hero-line {
+  width: 72px;
+  height: 1px;
+  background: var(--accent-gold);
+  margin-bottom: 2rem;
+  opacity: 0.6;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.hero-scroll-indicator span {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--accent-gold) 0%, transparent 100%);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION COMMON
+   ═══════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  padding: 7rem 4vw;
+}
+
+.section-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.section-header-left .section-label { margin-bottom: 0.75rem; display: block; }
+.section-header-left h2 { max-width: 600px; }
+
+.section-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(255,255,255,0.03);
+  margin-bottom: -2rem;
+  user-select: none;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 2rem 0;
+}
+
+.divider-gold {
+  width: 48px;
+  height: 1px;
+  background: var(--accent-gold);
+  opacity: 0.5;
+  margin: 1.5rem 0 2rem;
+}
+
+/* ═══════════════════════════════════════════
+   OVERVIEW SECTION
+   ═══════════════════════════════════════════ */
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.overview-text .body-lg { margin-bottom: 1.5rem; }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent-chrome);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.overview-visual {
+  position: relative;
+}
+
+.visual-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.5;
+}
+
+.visual-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.visual-card p { margin-bottom: 1rem; }
+.visual-card p:last-child { margin-bottom: 0; }
+
+.city-cards {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.city-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.city-card:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card);
+}
+
+.city-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--accent-chrome);
+  margin-bottom: 0.35rem;
+}
+
+.city-card .city-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+}
+
+/* ═══════════════════════════════════════════
+   FEATURE GRID (通用三列)
+   ═══════════════════════════════════════════ */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.feature-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 3rem 2.5rem;
+  position: relative;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover {
+  background: var(--bg-card);
+  border-color: var(--border-medium);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--accent-gold);
+  background: rgba(200,164,92,0.06);
+  border-radius: var(--radius-sm);
+}
+
+.feature-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.feature-card .feature-tag {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+}
+
+/* ═══════════════════════════════════════════
+   HIGHLIGHT CARD (宽幅卡片)
+   ═══════════════════════════════════════════ */
+
+.highlight-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.highlight-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.highlight-card:hover { background: var(--bg-card); }
+
+.highlight-card .section-label { margin-bottom: 0.75rem; }
+
+.highlight-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.highlight-card ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.highlight-card ul li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.highlight-card ul li::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+.highlight-card ul li:last-child { border-bottom: none; }
+
+.highlight-image {
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.highlight-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 320px;
+}
+
+.highlight-image .image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  z-index: 1;
+}
+
+.highlight-image .image-caption strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.highlight-image .image-caption small {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════
+   TIPS STRIP
+   ═══════════════════════════════════════════ */
+
+.tips-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.tip-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: background var(--transition-fast);
+}
+
+.tip-card:hover { background: var(--bg-card); }
+
+.tip-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 600;
+  color: rgba(200,164,92,0.12);
+  line-height: 1;
+  margin-bottom: -0.5rem;
+}
+
+.tip-card h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1rem 0 0.5rem;
+}
+
+.tip-card p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   QUOTE
+   ═══════════════════════════════════════════ */
+
+.quote-block {
+  padding: 6rem 4vw;
+  text-align: center;
+  position: relative;
+}
+
+.quote-block::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(200,164,92,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-chrome);
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.4;
+}
+
+.quote-author {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════
+   COMPARISON TABLE
+   ═══════════════════════════════════════════ */
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+.comp-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: background var(--transition-fast);
+}
+
+.comp-card:hover { background: var(--bg-card); }
+
+.comp-card.featured {
+  background: var(--bg-card);
+  border-color: var(--border-active);
+}
+
+.comp-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-gold);
+}
+
+.comp-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.comp-card .comp-sub {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 1.25rem;
+}
+
+.comp-card ul {
+  list-style: none;
+}
+
+.comp-card ul li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+}
+
+.comp-card ul li span:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.comp-card ul li:last-child { border-bottom: none; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+
+.footer {
+  padding: 5rem 4vw 3rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-chrome);
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer-col h5 {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.2rem 0;
+  transition: color var(--transition-fast);
+}
+
+.footer-col a:hover { color: var(--text-primary); }
+
+.footer-bottom {
+  max-width: 1300px;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+/* ── Parallax shimmer ── */
+.parallax-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.04;
+  pointer-events: none;
+  transition: transform 0.1s linear;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 1080px) {
+  .overview-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+  .highlight-row { grid-template-columns: 1fr; }
+  .tips-strip { grid-template-columns: repeat(2, 1fr); }
+  .comparison-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .tips-strip { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr; gap: 1.5rem; }
+  .section { padding: 4rem 5vw; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+  .footer-links { flex-direction: column; gap: 1.5rem; }
+}
+
+/* ── Mobile nav hamburger ── */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  z-index: 101;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--accent-chrome);
+  transition: var(--transition-fast);
+}
+
+@media (max-width: 720px) {
+  .mobile-menu-btn { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">V·S</a>
+  <ul class="nav-links">
+    <li><a href="#overview">概况</a></li>
+    <li><a href="#food">食</a></li>
+    <li><a href="#housing">住</a></li>
+    <li><a href="#transport">行</a></li>
+  </ul>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="parallax-glow" id="parallaxGlow" style="top:20%;left:60%;"></div>
+  <div class="hero-grid">
+    <span class="hero-eyebrow reveal visible">Guía de Vida · España</span>
+    <h1 class="hero-title reveal reveal-delay-1">
+      地中海的<br>光与<em>生活</em>
+    </h1>
+    <p class="hero-subtitle reveal reveal-delay-2">
+      瓦伦西亚与萨贡托，古老城墙与蔚蓝海岸交汇之处。一份写给追求品质生活的你——关于美食、居所与足迹的完整指南。
+    </p>
+    <div class="hero-line reveal reveal-delay-3"></div>
+  </div>
+  <div class="hero-scroll-indicator" onclick="document.getElementById('overview').scrollIntoView({behavior:'smooth'})">
+    <span>探索</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ OVERVIEW ═══════════════════════════════ -->
+<section class="section" id="overview">
+  <div class="section-inner">
+    <div class="section-number reveal">01</div>
+    <div class="section-header reveal">
+      <div class="section-header-left">
+        <span class="section-label">Descubrir · 发现</span>
+        <h2 class="display-lg">西班牙 · 瓦伦西亚 · 萨贡托</h2>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text">
+        <p class="body-lg reveal reveal-delay-1">
+          西班牙，位于欧洲西南部的伊比利亚半岛，拥有<strong style="color:var(--accent-chrome);font-weight:500;">3000年</strong>文明沉淀。从罗马帝国行省到摩尔人的安达卢斯，从大航海时代的日不落帝国到今日充满活力的现代民主国家——这片土地始终是文明交汇的十字路口。
+        </p>
+        <p class="body-lg reveal reveal-delay-2">
+          <strong style="color:var(--accent-chrome);font-weight:500;">瓦伦西亚</strong>（Valencia），西班牙第三大城市，坐落于地中海西岸。年均<strong style="color:var(--accent-gold-light);font-weight:500;">300天日照</strong>，冬季温和、夏季明朗。这里是海鲜饭（Paella）的故乡，拥有欧洲最大的海洋公园——艺术科学城，以及列入世界遗产的丝绸交易所。城市节奏从容而不失活力，既有千年古城的历史肌理，又有当代建筑的前卫锋芒。
+        </p>
+        <p class="body-lg reveal reveal-delay-3">
+          <strong style="color:var(--accent-chrome);font-weight:500;">萨贡托</strong>（Sagunto），瓦伦西亚以北约<strong style="color:var(--accent-gold-light);font-weight:500;">30公里</strong>，一座建在山丘上的古城。罗马剧场矗立两千年，城堡城墙俯瞰着地中海与柑橘园。人口约6.5万，保有西班牙小镇的宁静与亲切，同时高铁25分钟即可抵达瓦伦西亚市中心。对追求<strong style="color:var(--accent-gold-light);font-weight:500;">低生活成本、高品质日常</strong>的人来说，萨贡托是一个不可多得的理想之地。
+        </p>
+
+        <div class="stats-row reveal reveal-delay-4">
+          <div>
+            <div class="stat-value">300+</div>
+            <div class="stat-label">年均日照天数</div>
+          </div>
+          <div>
+            <div class="stat-value">18°</div>
+            <div class="stat-label">年均气温</div>
+          </div>
+          <div>
+            <div class="stat-value">2,000+</div>
+            <div class="stat-label">年历史积淀</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-visual">
+        <div class="visual-card reveal reveal-delay-1">
+          <h3>瓦伦西亚大区概览</h3>
+          <p class="body-md">西班牙17个自治区之一，位于东部地中海沿岸。官方语言为西班牙语和瓦伦西亚语，人口约500万。</p>
+          <p class="body-md">地中海气候：夏季温暖干燥（25–32°C），冬季温和（8–18°C），极少霜冻。降雨集中在春秋两季。</p>
+          <div class="divider"></div>
+          <p class="body-md">文化名片：法雅节（Las Fallas）、圣周游行、番茄大战（Buñol）。瓦伦西亚人以热情、开放、注重家庭著称——在这里，午餐可以持续三小时，广场上的露天咖啡座永远坐满了人。</p>
+        </div>
+
+        <div class="city-cards reveal reveal-delay-3">
+          <div class="city-card">
+            <h4>Valencia · 瓦伦西亚</h4>
+            <div class="city-subtitle">地中海明珠</div>
+            <p class="body-md">人口约80万，西班牙第三大都市圈。图里亚河穿城而过，老城区街道蜿蜒，中央市场（Mercado Central）是欧洲最大的生鲜市场之一。艺术科学城由卡拉特拉瓦设计，未来感十足的建筑群屹立于碧水之上。</p>
+          </div>
+          <div class="city-card">
+            <h4>Sagunto · 萨贡托</h4>
+            <div class="city-subtitle">千年山城</div>
+            <p class="body-md">人口约6.5万，距瓦伦西亚仅25分钟高铁车程。罗马剧场、城堡遗址、犹太区诉说着层层叠加的历史。生活节奏缓慢，社区紧密，拥有自己的海滩（Puerto de Sagunto），是一座被严重低估的宜居之城。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ QUOTE ═══════════════════════════════ -->
+<div class="quote-block reveal">
+  <p class="quote-text">"El Mediterráneo no es un mar, es una forma de vida."</p>
+  <p class="quote-author">"地中海不是一片海，而是一种生活方式。" —— 瓦伦西亚谚语</p>
+</div>
+
+<!-- ═══════════════════════════════ FOOD ═══════════════════════════════ -->
+<section class="section" id="food">
+  <div class="section-inner">
+    <div class="section-number reveal">02</div>
+    <div class="section-header reveal">
+      <div class="section-header-left">
+        <span class="section-label">Gastronomía · 食</span>
+        <h2 class="display-lg">从地中海到餐桌</h2>
+      </div>
+      <p class="body-md" style="max-width:380px;">瓦伦西亚是西班牙美食的心脏地带——这里是海鲜饭的诞生地，也是地中海饮食文化的完美范本。</p>
+    </div>
+
+    <!-- 核心美食三列 -->
+    <div class="feature-grid reveal reveal-delay-1">
+      <div class="feature-card">
+        <div class="feature-icon">🥘</div>
+        <h3>Paella Valenciana</h3>
+        <p>正宗瓦伦西亚海鲜饭使用兔子肉、鸡肉、扁豆和蜗牛——而非海鲜。米饭在浅口大铁锅中以橙木慢火烹制，底部焦香的 socarrat 是整道菜的灵魂。</p>
+        <span class="feature-tag">必尝经典</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🥤</div>
+        <h3>Horchata & Fartons</h3>
+        <p>油莎豆制成的冰镇饮品，搭配细长的甜面包 Fartons。在 Alboraya 的 horchatería 里消磨一个午后，是瓦伦西亚人最地道的日常仪式。</p>
+        <span class="feature-tag">当地特色</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🍊</div>
+        <h3>柑橘与海</h3>
+        <p>瓦伦西亚大区遍布柑橘园，鲜榨橙汁是每顿早餐的标配。地中海提供每日捕捞的红虾、鱿鱼和沙丁鱼——简单炙烤，佐以特级初榨橄榄油，便是人间至味。</p>
+        <span class="feature-tag">自然馈赠</span>
+      </div>
+    </div>
+
+    <!-- 餐厅推荐 + 市场 -->
+    <div class="highlight-row reveal reveal-delay-2" style="margin-top:2px;">
+      <div class="highlight-card">
+        <span class="section-label">Dónde Comer · 去哪吃</span>
+        <h3>瓦伦西亚 & 萨贡托<br>精选餐厅</h3>
+        <ul>
+          <li><strong style="color:var(--text-primary);">Casa Carmela</strong> — 百年老店，海滩边最地道的明火海鲜饭，需预约</li>
+          <li><strong style="color:var(--text-primary);">Central Bar</strong> — 中央市场内的米其林推荐小馆，主厨 Ricard Camarena 出品</li>
+          <li><strong style="color:var(--text-primary);">La Pepica</strong> — 海滨传奇，海明威曾在此用餐，主打海鲜饭与烤鱼</li>
+          <li><strong style="color:var(--text-primary);">Restaurante Arrels</strong> — 萨贡托城内的创意地中海料理，性价比极高</li>
+          <li><strong style="color:var(--text-primary);">Mercado de Sagunto</strong> — 萨贡托本地市场，每周三周六市集，生鲜与熟食俱佳</li>
+        </ul>
+      </div>
+      <div class="highlight-image">
+        <img src="assets/images/valencia-market-interior.jpg" alt="Mercado Central de Valencia" loading="lazy">
+        <div class="image-caption">
+          <strong>Mercado Central</strong>
+          <small>瓦伦西亚中央市场 · 欧洲最大生鲜市场之一</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- 饮食 Tips -->
+    <div class="tips-strip reveal reveal-delay-3">
+      <div class="tip-card">
+        <div class="tip-number">01</div>
+        <h4>午餐时间</h4>
+        <p>西班牙午餐在14:00–16:00，晚餐21:00之后。下午很多店铺会关门午休（siesta）。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">02</div>
+        <h4>Menú del Día</h4>
+        <p>工作日午市套餐，含前菜、主菜、甜品和饮品，仅需€10–15，性价比之王。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">03</div>
+        <h4>Tapas 文化</h4>
+        <p>点一杯酒通常附赠一小碟 tapas。在瓦伦西亚，这叫 "picaeta"——站着吃、边走边聊。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">04</div>
+        <h4>超市采购</h4>
+        <p>Mercadona 总部在瓦伦西亚，遍布全城。Consum 和 Carrefour 也是可靠选择。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ HOUSING ═══════════════════════════════ -->
+<section class="section" id="housing">
+  <div class="section-inner">
+    <div class="section-number reveal">03</div>
+    <div class="section-header reveal">
+      <div class="section-header-left">
+        <span class="section-label">Vivienda · 住</span>
+        <h2 class="display-lg">安家地中海畔</h2>
+      </div>
+      <p class="body-md" style="max-width:380px;">从老城公寓到海岸别墅，瓦伦西亚与萨贡托提供了丰富多元的居住选择——以及远低于欧洲一线城市的生活成本。</p>
+    </div>
+
+    <!-- 区域对比 -->
+    <div class="comparison-grid reveal reveal-delay-1">
+      <div class="comp-card">
+        <h4>瓦伦西亚市区</h4>
+        <div class="comp-sub">Ciutat Vella / Ruzafa / El Carmen</div>
+        <ul>
+          <li><span>一居室月租</span><span>€650–950</span></li>
+          <li><span>购买均价</span><span>€2,200/㎡</span></li>
+          <li><span>水电杂费</span><span>€100–150/月</span></li>
+          <li><span>社区氛围</span><span>活力、国际化</span></li>
+          <li><span>适合人群</span><span>年轻工作者、留学生</span></li>
+        </ul>
+      </div>
+      <div class="comp-card featured">
+        <h4>萨贡托</h4>
+        <div class="comp-sub">Sagunto Centro / Puerto</div>
+        <ul>
+          <li><span>一居室月租</span><span>€400–600</span></li>
+          <li><span>购买均价</span><span>€1,000/㎡</span></li>
+          <li><span>水电杂费</span><span>€80–120/月</span></li>
+          <li><span>社区氛围</span><span>宁静、家庭式</span></li>
+          <li><span>适合人群</span><span>家庭定居、退休</span></li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h4>瓦伦西亚周边</h4>
+        <div class="comp-sub">Alboraya / Paterna / El Puig</div>
+        <ul>
+          <li><span>一居室月租</span><span>€500–750</span></li>
+          <li><span>购买均价</span><span>€1,500/㎡</span></li>
+          <li><span>水电杂费</span><span>€90–130/月</span></li>
+          <li><span>社区氛围</span><span>适中、便捷</span></li>
+          <li><span>适合人群</span><span>通勤族、家庭</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 居住指南 -->
+    <div class="feature-grid reveal reveal-delay-2" style="margin-top:2px;">
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <h3>找房渠道</h3>
+        <p>Idealista、Fotocasa 是最主流的租房/购房平台。也可关注 Facebook 群组 "Expats in Valencia"。建议实地看房后再签合同——照片往往比实际更好。</p>
+        <span class="feature-tag">线上工具</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>租房须知</h3>
+        <p>押金通常为1–2个月租金。长期合同（5年以上）受法律保护，房东不得随意涨租。注意区分冷租与暖租——水电、物业费是否需要额外缴纳。</p>
+        <span class="feature-tag">法律贴士</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏡</div>
+        <h3>购房流程</h3>
+        <p>外国人购房无限制。需取得 NIE（外国人税号），总税费约房价的10–13%。建议聘请本地律师审核合同、排查产权纠纷。从签约到过户约需4–8周。</p>
+        <span class="feature-tag">置业指南</span>
+      </div>
+    </div>
+
+    <!-- 生活成本 -->
+    <div class="highlight-row reveal reveal-delay-3" style="margin-top:2px;">
+      <div class="highlight-image">
+        <img src="assets/images/valencia-old-street.jpg" alt="Calle de la Paz Valencia" loading="lazy">
+        <div class="image-caption">
+          <strong>Calle de la Paz</strong>
+          <small>瓦伦西亚老城 · 典型街区</small>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <span class="section-label">Coste de Vida · 生活成本</span>
+        <h3>每月开销参考<br>（单人）</h3>
+        <ul>
+          <li><span>房租（萨贡托一居室）</span><span>€450–600</span></li>
+          <li><span>餐饮（自炊 + 偶尔外食）</span><span>€250–400</span></li>
+          <li><span>交通（月卡）</span><span>€35–55</span></li>
+          <li><span>网络 + 手机</span><span>€30–50</span></li>
+          <li><span>娱乐、杂项</span><span>€150–250</span></li>
+          <li><span style="color:var(--accent-gold);font-weight:600;">月合计（舒适生活）</span><span style="color:var(--accent-gold);font-weight:600;">约 €1,000–1,400</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TRANSPORT ═══════════════════════════════ -->
+<section class="section" id="transport">
+  <div class="section-inner">
+    <div class="section-number reveal">04</div>
+    <div class="section-header reveal">
+      <div class="section-header-left">
+        <span class="section-label">Transporte · 行</span>
+        <h2 class="display-lg">自由穿行山海间</h2>
+      </div>
+      <p class="body-md" style="max-width:380px;">瓦伦西亚拥有西班牙最完善的城市交通系统之一，而萨贡托作为卫星城，通勤便利令人惊喜。</p>
+    </div>
+
+    <!-- 交通方式 -->
+    <div class="feature-grid reveal reveal-delay-1">
+      <div class="feature-card">
+        <div class="feature-icon">🚇</div>
+        <h3>Cercanías 近郊铁路</h3>
+        <p>萨贡托 ↔ 瓦伦西亚的 C-5 / C-6 线，25分钟直达市中心（Valencia Nord 站）。单程€3.6，月票€55。运营时间5:30–23:00，高峰每15–20分钟一班。</p>
+        <span class="feature-tag">主力通勤</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚌</div>
+        <h3>市内公交 & EMT</h3>
+        <p>瓦伦西亚 EMT 公交网络覆盖全城，单程€1.5，充值卡 Suma 10 次€9。萨贡托有本地公交和前往海滩的季节性班车，票价€1.2。</p>
+        <span class="feature-tag">日常出行</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚲</div>
+        <h3>自行车 & 慢行</h3>
+        <p>瓦伦西亚拥有200+公里自行车道，图里亚河公园贯穿全城——骑车穿越橙园与松林是这里最惬意的通勤方式。Valenbisi 公共自行车年费仅€29。</p>
+        <span class="feature-tag">推荐体验</span>
+      </div>
+    </div>
+
+    <div class="feature-grid reveal reveal-delay-2" style="margin-top:2px;">
+      <div class="feature-card">
+        <div class="feature-icon">🚄</div>
+        <h3>高铁 & 长途</h3>
+        <p>瓦伦西亚 Joaquín Sorolla 站：AVE 高铁1.5小时达马德里，3小时达巴塞罗那。萨贡托站也有部分长途列车停靠，北上 Castellón、Tarragona 十分便捷。</p>
+        <span class="feature-tag">城际旅行</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✈️</div>
+        <h3>机场连接</h3>
+        <p>瓦伦西亚机场（VLC）距市区8公里，地铁3号线直达。飞往欧洲各大城市（巴黎、伦敦、罗马）约1.5–2.5小时。从萨贡托驾车约30分钟、火车换乘约45分钟。</p>
+        <span class="feature-tag">国际门户</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚗</div>
+        <h3>自驾 & 租车</h3>
+        <p>AP-7 高速公路连接萨贡托与瓦伦西亚。二手车市场成熟，€5,000–8,000可购得可靠车型。注意老城区许多街道仅限居民通行，停车需留意蓝/绿线规定。</p>
+        <span class="feature-tag">灵活出行</span>
+      </div>
+    </div>
+
+    <!-- 通勤对比 -->
+    <div class="comparison-grid reveal reveal-delay-3" style="margin-top:2px;">
+      <div class="comp-card">
+        <h4>萨贡托 → 瓦伦西亚</h4>
+        <div class="comp-sub">日常通勤方案</div>
+        <ul>
+          <li><span>火车 Cercanías</span><span>25分钟</span></li>
+          <li><span>自驾（AP-7）</span><span>25–30分钟</span></li>
+          <li><span>自驾（免费公路）</span><span>35–40分钟</span></li>
+          <li><span>月交通成本</span><span>€55–100</span></li>
+        </ul>
+      </div>
+      <div class="comp-card featured">
+        <h4>瓦伦西亚市内</h4>
+        <div class="comp-sub">市区出行参考</div>
+        <ul>
+          <li><span>地铁/有轨电车</span><span>10条线路</span></li>
+          <li><span>公交覆盖</span><span>60+条线路</span></li>
+          <li><span>月交通卡 Suma</span><span>€35–55</span></li>
+          <li><span>单车出行占比</span><span>15%</span></li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h4>瓦伦西亚 → 主要城市</h4>
+        <div class="comp-sub">城际出行</div>
+        <ul>
+          <li><span>→ 马德里 AVE</span><span>1h38min</span></li>
+          <li><span>→ 巴塞罗那 AVE</span><span>2h50min</span></li>
+          <li><span>→ 阿利坎特</span><span>1h20min</span></li>
+          <li><span>→ 马略卡（渡轮）</span><span>5h</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CLOSING QUOTE ═══════════════════════════════ -->
+<div class="quote-block reveal">
+  <p class="quote-text">"Aquí el tiempo no se mide en horas, sino en sobremesas."</p>
+  <p class="quote-author">"在这里，时间不以小时计量，而以餐后的谈笑丈量。"</p>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">V·S</div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>导航</h5>
+        <a href="#overview">概况</a>
+        <a href="#food">美食</a>
+        <a href="#housing">居住</a>
+        <a href="#transport">出行</a>
+      </div>
+      <div class="footer-col">
+        <h5>资源</h5>
+        <a href="#">Idealista 租房</a>
+        <a href="#">Renfe 铁路</a>
+        <a href="#">EMT 公交</a>
+        <a href="#">Valenbisi</a>
+      </div>
+      <div class="footer-col">
+        <h5>关于</h5>
+        <a href="#">更新于 2026</a>
+        <a href="#">生活指南</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Valencia & Sagunto · Guía de Vida</span>
+    <span>地中海生活方式指南</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+// ── Scroll reveal ──
+const observerOptions = {
+  root: null,
+  rootMargin: '0px 0px -60px 0px',
+  threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Nav scroll effect ──
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > 80) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  lastScroll = currentScroll;
+});
+
+// ── Parallax glow follow mouse ──
+const glow = document.getElementById('parallaxGlow');
+if (glow) {
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    glow.style.transform = `translate(${(x - 60) * 0.08}%, ${(y - 20) * 0.08}%)`;
+  });
+}
+
+// ── Mobile menu toggle ──
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const navLinks = document.querySelector('.nav-links');
+if (mobileBtn) {
+  mobileBtn.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    if (navLinks.style.display === 'flex') {
+      navLinks.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(8,8,8,0.95);backdrop-filter:blur(20px);padding:2rem 5vw;gap:1.5rem;border-bottom:1px solid var(--border-subtle);';
+    }
+  });
+}
+
+// ── Smooth nav link close on mobile ──
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 720) {
+      navLinks.style.display = 'none';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
