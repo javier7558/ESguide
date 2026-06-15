@@ -896,6 +896,54 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════
+   LOCATION MAP
+   ═══════════════════════════════════════════ */
+
+.location-map-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+}
+
+.location-map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
+  filter: grayscale(0.35) brightness(0.75) contrast(1.1);
+  transition: filter var(--transition-smooth);
+}
+
+.location-map-wrap:hover iframe {
+  filter: grayscale(0.1) brightness(0.9) contrast(1);
+}
+
+.location-badge {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  z-index: 2;
+  pointer-events: auto;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.location-badge:hover {
+  color: var(--accent-gold);
+  border-color: var(--border-active);
+}
+
+/* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
 
@@ -946,7 +994,7 @@ body::before {
 
 <!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo">V·S</a>
+  <a href="#" class="nav-logo">España</a>
   <ul class="nav-links">
     <li><a href="#overview">概况</a></li>
     <li><a href="#food">食</a></li>
@@ -1043,6 +1091,32 @@ body::before {
   </div>
 </section>
 
+<!-- ═══════════════════════════════ LOCATION ═══════════════════════════════ -->
+<section class="section" style="padding-top:2rem; padding-bottom:2rem;">
+  <div class="section-inner">
+    <div class="highlight-row reveal">
+      <div class="highlight-card" style="background:var(--bg-card);">
+        <span class="section-label">Ubicación · 项目地点</span>
+        <h3>JPXR+MM<br>46500 Puçol, Valencia</h3>
+      </div>
+      <div class="location-map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=JPXR%2BMM+46500+Pu%C3%A7ol+Valencia+Spain&output=embed&z=15"
+          loading="lazy"
+          title="Puçol 地图位置"
+          allowfullscreen>
+        </iframe>
+        <a href="https://maps.google.com/maps?q=JPXR%2BMM+46500+Pu%C3%A7ol+Valencia+Spain"
+           target="_blank" rel="noopener"
+           class="location-badge"
+           style="text-decoration:none;">
+          在 Google Maps 中打开 ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════════ QUOTE ═══════════════════════════════ -->
 <div class="quote-block reveal">
   <p class="quote-text">"El Mediterráneo no es un mar, es una forma de vida."</p>
@@ -1087,13 +1161,32 @@ body::before {
     <div class="highlight-row reveal reveal-delay-2" style="margin-top:2px;">
       <div class="highlight-card">
         <span class="section-label">Dónde Comer · 去哪吃</span>
-        <h3>瓦伦西亚 & 萨贡托<br>精选餐厅</h3>
+        <h3>瓦伦西亚 & 萨贡托<br>精选餐厅（西餐）</h3>
         <ul>
-          <li><strong style="color:var(--text-primary);">Casa Carmela</strong> — 百年老店，海滩边最地道的明火海鲜饭，需预约</li>
-          <li><strong style="color:var(--text-primary);">Central Bar</strong> — 中央市场内的米其林推荐小馆，主厨 Ricard Camarena 出品</li>
-          <li><strong style="color:var(--text-primary);">La Pepica</strong> — 海滨传奇，海明威曾在此用餐，主打海鲜饭与烤鱼</li>
-          <li><strong style="color:var(--text-primary);">Restaurante Arrels</strong> — 萨贡托城内的创意地中海料理，性价比极高</li>
-          <li><strong style="color:var(--text-primary);">Mercado de Sagunto</strong> — 萨贡托本地市场，每周三周六市集，生鲜与熟食俱佳</li>
+          <li>
+            <strong style="color:var(--text-primary);">Hundred Burgers</strong> — 🏆 2024/2025 全球最佳汉堡，干式熟成牛肉手工现做
+            <br><span class="caption">📍 C/ de Sant Vicent Màrtir, 44, Ciutat Vella, 46001 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Casa Carmela</strong> — 百年老店（1922），橙木明火海鲜饭，需预约
+            <br><span class="caption">📍 C/ d'Isabel de Villena, 155, Playa Malvarrosa, 46011 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Central Bar</strong> — 中央市场内米其林推荐小馆，Ricard Camarena 出品
+            <br><span class="caption">📍 Plaça de la Ciutat de Bruges, s/n (Mercado Central), 46001 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">La Pepica</strong> — 海滨传奇，海明威曾在此用餐，主打海鲜饭与烤鱼
+            <br><span class="caption">📍 Passeig de Neptú, 6, Playa Malvarrosa, 46011 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Restaurante Arrels</strong> — 米其林一星，主厨 Vicky Sevilla 的地中海创意料理
+            <br><span class="caption">📍 C/ del Castell, 18, 46500 Sagunto</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Mercado de Sagunto</strong> — 萨贡托本地市场，每周三周六市集，生鲜熟食俱佳
+            <br><span class="caption">📍 Plaça del Mercat, s/n, 46500 Sagunto</span>
+          </li>
         </ul>
       </div>
       <div class="highlight-image">
@@ -1128,6 +1221,85 @@ body::before {
         <p>Mercadona 总部在瓦伦西亚，遍布全城。Consum 和 Carrefour 也是可靠选择。</p>
       </div>
     </div>
+
+    <!-- 中餐精选 -->
+    <div class="highlight-row reveal reveal-delay-4" style="margin-top:2px;">
+      <div class="highlight-image">
+        <img src="assets/images/valencia-plaza.jpg" alt="Valencia plaza" loading="lazy">
+        <div class="image-caption">
+          <strong>Valencia · 街角广场</strong>
+          <small>亚洲美食聚集地 Extramurs 区近在咫尺</small>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <span class="section-label">Restaurantes Chinos · 中餐精选</span>
+        <h3>瓦伦西亚 & 萨贡托<br>精选餐厅（中餐）</h3>
+        <ul>
+          <li>
+            <strong style="color:var(--text-primary);">M2M Noodles</strong> — 兰州拉面，手工现做，评分 4.7
+            <br><span class="caption">📍 Av. del Primat Reig, 121, El Pla del Real, 46020 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Liukoushui Chongqing Noodles</strong> — 重庆小面，麻辣鲜香
+            <br><span class="caption">📍 C/ de Quevedo, 5, Ciutat Vella, 46001 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Casa Tafu</strong> — 台湾料理，卤肉饭 + 台式炸鸡，午间营业
+            <br><span class="caption">📍 C/ de Julio Antonio, 26, Extramurs, 46007 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">天天大肉包</strong> — 手工包子/面点，Chinatown 核心区
+            <br><span class="caption">📍 C/ de Pelai, 15, Extramurs, 46007 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">黄焖鸡</strong> — 紧邻 Casa Tafu，同在亚洲美食街区
+            <br><span class="caption">📍 C/ de Julio Antonio, 24, Extramurs, 46007 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Restaurant Xinès 103</strong> — 经济实惠中餐，日间套餐 €10 起
+            <br><span class="caption">📍 Av. del Primat Reig, 103, Benimaclet, 46020 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">鸿龙</strong> — 萨贡托港主街，近海滩
+            <br><span class="caption">📍 Av. Camp Morvedre, 115, 46520 Port de Sagunt, Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Restaurante Hong Long</strong> — 中餐 + 日料，评分 4.4，含寿司刺身
+            <br><span class="caption">📍 Av. Mediterráneo, 133, 46520 Puerto de Sagunto, Valencia</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 中国超市 -->
+    <div class="highlight-row reveal reveal-delay-4" style="margin-top:2px;">
+      <div class="highlight-card">
+        <span class="section-label">Supermercados Chinos · 中国超市</span>
+        <h3>瓦伦西亚市区<br>亚洲超市指南</h3>
+        <ul>
+          <li>
+            <strong style="color:var(--text-primary);">Hiper Asia</strong> — 最大亚洲超市，1500m²，20,000+ 商品，含生鲜/冻品/调味
+            <br><span class="caption">📍 C/ de Bailén, 7, 46007 Valencia（Estación del Nord 旁）</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Chinatown 亚洲商行</strong> — 多家小型亚洲食品店沿街分布，调料/速食/零食齐全
+            <br><span class="caption">📍 C/ de Pelai 沿线（Convento de Jerusalén 周边）, 46007 Valencia</span>
+          </li>
+          <li>
+            <strong style="color:var(--text-primary);">Chinatown 东方超市</strong> — Bailén 街周边聚集多家华人商行，蔬菜鲜肉每日到货
+            <br><span class="caption">📍 C/ de Bailén / Convento de Jerusalén 周边, 46007 Valencia</span>
+          </li>
+        </ul>
+      </div>
+      <div class="highlight-image">
+        <img src="assets/images/valencia-market-dome.jpg" alt="Mercado Central dome" loading="lazy">
+        <div class="image-caption">
+          <strong>Estación del Nord 周边</strong>
+          <small>Chinatown 距火车站步行 2 分钟</small>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1156,7 +1328,7 @@ body::before {
           <li><span>适合人群</span><span>年轻工作者、留学生</span></li>
         </ul>
       </div>
-      <div class="comp-card featured">
+      <div class="comp-card">
         <h4>萨贡托</h4>
         <div class="comp-sub">Sagunto Centro / Puerto</div>
         <ul>
@@ -1204,8 +1376,8 @@ body::before {
 
     <!-- 生活成本 -->
     <div class="highlight-row reveal reveal-delay-3" style="margin-top:2px;">
-      <div class="highlight-image">
-        <img src="assets/images/valencia-old-street.jpg" alt="Calle de la Paz Valencia" loading="lazy">
+      <div class="highlight-image" style="min-height:0;">
+        <img src="assets/images/valencia-old-street.jpg" alt="Calle de la Paz Valencia" loading="lazy" style="min-height:0;height:auto;max-height:320px;">
         <div class="image-caption">
           <strong>Calle de la Paz</strong>
           <small>瓦伦西亚老城 · 典型街区</small>
@@ -1277,7 +1449,7 @@ body::before {
       <div class="feature-card">
         <div class="feature-icon">🚗</div>
         <h3>自驾 & 租车</h3>
-        <p>AP-7 高速公路连接萨贡托与瓦伦西亚。二手车市场成熟，€5,000–8,000可购得可靠车型。注意老城区许多街道仅限居民通行，停车需留意蓝/绿线规定。</p>
+        <p>Sixt、Hertz、Europcar 等国际租车公司遍布机场及市区。AP-7 高速贯通全境，二手车 €5,000–8,000 可购得可靠车型。老城区限行多，停车需留意蓝/绿线规定。详见下方租车指南。</p>
         <span class="feature-tag">灵活出行</span>
       </div>
     </div>
@@ -1294,7 +1466,7 @@ body::before {
           <li><span>月交通成本</span><span>€55–100</span></li>
         </ul>
       </div>
-      <div class="comp-card featured">
+      <div class="comp-card">
         <h4>瓦伦西亚市内</h4>
         <div class="comp-sub">市区出行参考</div>
         <ul>
@@ -1315,6 +1487,148 @@ body::before {
         </ul>
       </div>
     </div>
+
+    <!-- ═══════ 租车指南 ═══════ -->
+    <div class="highlight-row reveal reveal-delay-4" style="margin-top:4rem;">
+      <div class="highlight-card">
+        <span class="section-label">Alquiler de Coches · 租车指南</span>
+        <h3>自驾探索<br>地中海海岸线</h3>
+        <div class="divider-gold"></div>
+        <p class="body-md" style="margin-bottom:1.5rem;">在瓦伦西亚租车是探索周边小镇和隐秘海滩的最佳方式。机场和市区均有多家国际及本地租车公司，提前在线预订通常比门店便宜 30–50%。</p>
+        <ul>
+          <li><strong style="color:var(--text-primary);">Sixt</strong> — 德国品牌，车型新颖、车况优良。瓦伦西亚机场 + 市中心 2 家门店，紧凑型约 €25–40/天，全险 €15–20/天</li>
+          <li><strong style="color:var(--text-primary);">Hertz</strong> — 全球最大租车公司，服务规范、救援网络完善。中型家庭车约 €35–55/天，支持中文客服与导航</li>
+          <li><strong style="color:var(--text-primary);">Europcar / Goldcar</strong> — 性价比之选。Goldcar 为西班牙本土品牌，旺季小型车低至 €12–20/天，但需留意附加险条款</li>
+          <li><strong style="color:var(--text-primary);">Centauro / Record Go</strong> — 本地连锁，提供机场⇆市区免费接驳。长租（1周以上）有显著折扣，月租 €300–500 起</li>
+        </ul>
+      </div>
+      <div class="highlight-image">
+        <img src="assets/images/valencia-beach.jpg" alt="地中海海岸自驾探索" loading="lazy">
+        <div class="image-caption">
+          <strong>地中海海岸线</strong>
+          <small>从萨贡托一路向南 · 自驾最美的海岸公路</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- 租车须知 + 平台 Tips -->
+    <div class="tips-strip reveal reveal-delay-4" style="margin-top:2px;">
+      <div class="tip-card">
+        <div class="tip-number">01</div>
+        <h4>驾照要求</h4>
+        <p>持中国驾照 + 西班牙官方翻译件或国际驾照（IDP）即可租车。建议在国内提前办好公证翻译件。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">02</div>
+        <h4>保险怎么选</h4>
+        <p>建议购买全额险（Cobertura Total），含碰撞、盗抢和第三方责任。用 RentalCover.com 单独购买通常比柜台便宜 40%。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">03</div>
+        <h4>平台比价</h4>
+        <p>Rentalcars.com、DiscoverCars.com 聚合比价，免费取消。旺季（7–8月）至少提前 2 周预订，价格可低一半。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">04</div>
+        <h4>停车 & 限行</h4>
+        <p>老城区多 ZBE 低排放区，GPS 导航选"避开限行"。蓝线付费停车 €1–2/小时，白线免费但车位稀少。</p>
+      </div>
+    </div>
+
+    <!-- ═══════ 火车票 & 地铁票购买指南 ═══════ -->
+    <div class="highlight-row reveal reveal-delay-4" style="margin-top:4rem;">
+      <div class="highlight-image">
+        <img src="assets/images/valencia-modern-arch.jpg" alt="瓦伦西亚现代建筑" loading="lazy">
+        <div class="image-caption">
+          <strong>Estación Joaquín Sorolla</strong>
+          <small>瓦伦西亚 AVE 高铁站 · 现代高效</small>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <span class="section-label">Billetes · 购票指南</span>
+        <h3>火车票 & 地铁票<br>一站式攻略</h3>
+        <div class="divider-gold"></div>
+        <p class="body-md" style="margin-bottom:1.5rem;">西班牙铁路系统覆盖广、准点率高。高铁 AVE、近郊 Cercanías 和地铁无缝衔接，用好以下购票工具，出行事半功倍：</p>
+        <ul>
+          <li><strong style="color:var(--text-primary);">Omio</strong> — 欧洲最流行的跨平台购票 App，支持中文界面。可同时搜索 AVE、巴士和航班，票价透明，电子票直接扫码进站</li>
+          <li><strong style="color:var(--text-primary);">Trainline</strong> — 专注欧洲铁路，界面简洁、退款便捷。Renfe 官网偶尔卡顿，Trainline 体验更流畅，价格与官网一致</li>
+          <li><strong style="color:var(--text-primary);">Renfe 官网 & App</strong> — 西班牙国铁官方渠道，提前购票享 <em style="color:var(--accent-gold);">Promo</em> 价（低至 4 折）。AVE 最早提前 90 天放票，越早越便宜</li>
+          <li><strong style="color:var(--text-primary);">Metrovalencia 官方 App</strong> — 地铁/有轨电车专用，支持 Suma 卡在线充值，实时查询线路与班次，界面简洁好用</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 购票 Tips -->
+    <div class="tips-strip reveal reveal-delay-4" style="margin-top:2px;">
+      <div class="tip-card">
+        <div class="tip-number">01</div>
+        <h4>Suma 交通卡</h4>
+        <p>瓦伦西亚统一交通卡，覆盖地铁、公交、Cercanías（同区内）。月卡 €35–55，10 次卡 €9，地铁站自助机随买随充。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">02</div>
+        <h4>AVE 买票时机</h4>
+        <p>提前 30–90 天购票可享 Promo 价，瓦伦西亚→马德里低至 €22。周五下午和周日晚上为高峰，价格翻倍。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">03</div>
+        <h4>Cercanías 通勤</h4>
+        <p>萨贡托→瓦伦西亚 Nord 站 C-5/C-6 线，单程 €3.6。Renfe Cercanías App 可购票，或车站自助机（有英文界面）。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">04</div>
+        <h4>避坑提醒</h4>
+        <p>AVE 需提前到站安检（类似机场）。Omio/Trainline 价格含手续费，Renfe 官网价格最低但需西班牙银行卡付款。</p>
+      </div>
+    </div>
+
+    <!-- ═══════ 电话卡指南 ═══════ -->
+    <div class="highlight-row reveal reveal-delay-4" style="margin-top:4rem;">
+      <div class="highlight-card">
+        <span class="section-label">SIM y Prepago · 电话卡指南</span>
+        <h3>西班牙当地<br>手机卡办理攻略</h3>
+        <div class="divider-gold"></div>
+        <p class="body-md" style="margin-bottom:1.5rem;">落地西班牙第一件事——办一张当地电话卡。三大运营商 Movistar、Vodafone、Orange 覆盖全国，虚拟运营商（DIGI、Lowi 等）性价比更高。<strong style="color:var(--text-primary);">Prepago 预付费卡凭护照即可办理</strong>，无需 NIE 和西班牙银行账户，即办即通。</p>
+        <ul>
+          <li><strong style="color:var(--text-primary);">Vodafone Prepago S</strong> — 入门首选，<em style="color:var(--accent-gold);">90GB €10</em>/28天，无限本地通话+国际分钟。M档270GB €15，5G+eSIM 齐全，英语客服友好</li>
+          <li><strong style="color:var(--text-primary);">Orange Prepago 10</strong> — <em style="color:var(--accent-gold);">60GB €10</em>/28天，无限通话+EU漫游。有中文客服热线，门店遍布全城。240GB €15、无限流量 €35</li>
+          <li><strong style="color:var(--text-primary);">Movistar Prepaid Plus</strong> — 覆盖最广（农村也不掉线），<em style="color:var(--accent-gold);">60GB €10</em>/28天，5G 覆盖领先。240GB €15，适合常去偏远地区的用户</li>
+          <li><strong style="color:var(--text-primary);">DIGI（性价比之王）</strong> — <em style="color:var(--accent-gold);">50GB 仅 €7</em>/28天，100GB €10、150GB €12。eSIM 免费、流量可结转，2025–2026 承诺不涨价</li>
+        </ul>
+      </div>
+      <div class="highlight-image">
+        <img src="assets/images/lonja-silk-exchange.jpg" alt="瓦伦西亚丝绸交易所 La Lonja de la Seda" loading="lazy">
+        <div class="image-caption">
+          <strong>La Lonja de la Seda · 丝绸交易所</strong>
+          <small>UNESCO 世界遗产 · 哥特式柱厅 · 运营商门店步行即达</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- 办卡 Tips -->
+    <div class="tips-strip reveal reveal-delay-4" style="margin-top:2px;">
+      <div class="tip-card">
+        <div class="tip-number">01</div>
+        <h4>办理门槛</h4>
+        <p>Prepago 仅需<strong>护照原件</strong>，门店即办即激活（SIM 卡强制实名注册，需拍照留存）。合约卡需 NIE + 西班牙 IBAN 银行账户。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">02</div>
+        <h4>哪里购买</h4>
+        <p>机场到达厅、市中心商业街、购物中心均有 Vodafone / Orange / Movistar 门店。部分 Tabacos 烟草店和手机配件店也售基础 SIM 卡。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">03</div>
+        <h4>MVNO 省钱之选</h4>
+        <p>Lowi（Vodafone 网络，50GB €8）、Simyo（Orange 网络，40GB €10）、Lobster（Movistar 网络，英语服务）。携号转网 1–2 天即可完成。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-number">04</div>
+        <h4>避坑提醒</h4>
+        <p>预付费按<strong>28天</strong>循环≠整月，续费日会逐渐前移。打回国优先用 WhatsApp/微信。合约卡买机分期通常锁定 24 个月，提前解约需付违约金。</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1327,7 +1641,7 @@ body::before {
 <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-brand">V·S</div>
+    <div class="footer-brand">España</div>
     <div class="footer-links">
       <div class="footer-col">
         <h5>导航</h5>
@@ -1338,10 +1652,10 @@ body::before {
       </div>
       <div class="footer-col">
         <h5>资源</h5>
-        <a href="#">Idealista 租房</a>
-        <a href="#">Renfe 铁路</a>
-        <a href="#">EMT 公交</a>
-        <a href="#">Valenbisi</a>
+        <a href="https://www.idealista.com/" target="_blank" rel="noopener">Idealista 租房</a>
+        <a href="https://www.renfe.com/" target="_blank" rel="noopener">Renfe 铁路</a>
+        <a href="https://www.emtvalencia.es/" target="_blank" rel="noopener">EMT 公交</a>
+        <a href="https://www.valenbisi.es/" target="_blank" rel="noopener">Valenbisi</a>
       </div>
       <div class="footer-col">
         <h5>关于</h5>
@@ -1351,7 +1665,7 @@ body::before {
     </div>
   </div>
   <div class="footer-bottom">
-    <span>Valencia & Sagunto · Guía de Vida</span>
+    <span>España · Guía de Vida</span>
     <span>地中海生活方式指南</span>
   </div>
 </footer>
