@@ -410,70 +410,45 @@ body::before {
   position: relative;
 }
 
-.visual-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-sm);
-  padding: 2.5rem;
+.overview-img-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.overview-img-card {
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 16 / 10;
 }
 
-.visual-card::before {
-  content: '';
+.overview-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) contrast(1.05);
+  transition: filter var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.overview-img-card:hover img {
+  filter: brightness(0.85) contrast(1);
+  transform: scale(1.03);
+}
+
+.overview-img-label {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-  opacity: 0.5;
-}
-
-.visual-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.visual-card p { margin-bottom: 1rem; }
-.visual-card p:last-child { margin-bottom: 0; }
-
-.city-cards {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.city-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  padding: 1.5rem 2rem;
-  border-radius: var(--radius-sm);
-  transition: border-color var(--transition-fast), background var(--transition-fast);
-}
-
-.city-card:hover {
-  border-color: var(--border-active);
-  background: var(--bg-card);
-}
-
-.city-card h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--accent-chrome);
-  margin-bottom: 0.35rem;
-}
-
-.city-card .city-subtitle {
-  font-size: 0.7rem;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent-gold);
-  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  z-index: 1;
 }
 
 /* ═══════════════════════════════════════════
@@ -1284,24 +1259,18 @@ body::before {
       </div>
 
       <div class="overview-visual">
-        <div class="visual-card reveal reveal-delay-1">
-          <h3>实用信息速查</h3>
-          <p class="body-md">语言：西班牙语（官方）和瓦伦西亚语。英语在旅游区通用，行政办事建议自带翻译。</p>
-          <p class="body-md">时区：CET（UTC+1），夏令时 CEST（UTC+2）。与北京时间差 6–7 小时。</p>
-          <div class="divider"></div>
-          <p class="body-md">重要节日：法雅节（3 月 15–19 日，全城燃烧雕塑）、圣周（4 月）、番茄大战（8 月，Buñol 镇）。节日期间市区拥堵，建议提前安排出行。</p>
-        </div>
-
-        <div class="city-cards reveal reveal-delay-3">
-          <div class="city-card">
-            <h4>Valencia · 瓦伦西亚</h4>
-            <div class="city-subtitle">市区参考</div>
-            <p class="body-md">一居室月租 €650–950 · 购买均价 €2,200/㎡ · 通勤以地铁/公交/自行车为主 · 国际化程度高，生活配套齐全</p>
+        <div class="overview-img-stack reveal reveal-delay-1">
+          <div class="overview-img-card">
+            <img src="assets/images/valencia-arts-sciences.jpg" alt="瓦伦西亚艺术科学城" loading="lazy">
+            <span class="overview-img-label">Ciutat de les Arts i les Ciències</span>
           </div>
-          <div class="city-card">
-            <h4>Sagunto · 萨贡托</h4>
-            <div class="city-subtitle">卫星城参考</div>
-            <p class="body-md">一居室月租 €400–600 · 购买均价 €1,000/㎡ · 高铁 25 分钟到市区 · 安静、适合家庭，生活成本低</p>
+          <div class="overview-img-card">
+            <img src="assets/images/valencia-plaza.jpg" alt="瓦伦西亚老城广场" loading="lazy">
+            <span class="overview-img-label">Valencia · 老城区</span>
+          </div>
+          <div class="overview-img-card">
+            <img src="assets/images/valencia-beach.jpg" alt="地中海海岸线" loading="lazy">
+            <span class="overview-img-label">Sagunto · 海岸线</span>
           </div>
         </div>
       </div>
