@@ -414,13 +414,15 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  height: 100%;
 }
 
 .overview-img-card {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  aspect-ratio: 16 / 10;
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 .overview-img-card img {
@@ -1261,15 +1263,15 @@ body::before {
       <div class="overview-visual">
         <div class="overview-img-stack reveal reveal-delay-1">
           <div class="overview-img-card">
+            <img src="assets/images/spain-plaza-espana.jpg" alt="西班牙塞维利亚广场" loading="lazy">
+            <span class="overview-img-label">Plaza de España · Sevilla</span>
+          </div>
+          <div class="overview-img-card">
             <img src="assets/images/valencia-arts-sciences.jpg" alt="瓦伦西亚艺术科学城" loading="lazy">
             <span class="overview-img-label">Ciutat de les Arts i les Ciències</span>
           </div>
           <div class="overview-img-card">
-            <img src="assets/images/valencia-plaza.jpg" alt="瓦伦西亚老城广场" loading="lazy">
-            <span class="overview-img-label">Valencia · 老城区</span>
-          </div>
-          <div class="overview-img-card">
-            <img src="assets/images/valencia-beach.jpg" alt="地中海海岸线" loading="lazy">
+            <img src="assets/images/valencia-beach.jpg" alt="萨贡托海岸线" loading="lazy">
             <span class="overview-img-label">Sagunto · 海岸线</span>
           </div>
         </div>
