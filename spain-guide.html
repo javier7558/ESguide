@@ -981,6 +981,172 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════
+   SIDEBAR TOC
+   ═══════════════════════════════════════════ */
+
+.side-toc {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+  padding: 0 0.6rem;
+}
+
+.toc-track {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  position: relative;
+  padding-left: 0.55rem;
+  border-left: 1px solid var(--border-medium);
+  transition: border-color var(--transition-smooth);
+}
+
+.toc-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+/* ── dot indicator ── */
+.toc-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-medium);
+  margin-left: calc(-0.55rem - 3.5px);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.toc-dot.toc-sub::before {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+}
+
+/* ── label (hidden by default, shown on hover) ── */
+.toc-dot::after {
+  content: attr(data-label);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-left: 0.75rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* ── hover: show label ── */
+.side-toc:hover .toc-dot::after,
+.side-toc.pinned .toc-dot::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.side-toc:hover .toc-track,
+.side-toc.pinned .toc-track {
+  border-left-color: var(--border-active);
+}
+
+/* ── hover: brighten all dots ── */
+.side-toc:hover .toc-dot::before,
+.side-toc.pinned .toc-dot::before {
+  background: var(--text-secondary);
+}
+
+.side-toc:hover .toc-dot.toc-sub::before,
+.side-toc.pinned .toc-dot.toc-sub::before {
+  background: var(--text-muted);
+  border-color: var(--text-muted);
+}
+
+.side-toc:hover .toc-dot,
+.side-toc.pinned .toc-dot {
+  color: var(--text-secondary);
+}
+
+/* ── active section ── */
+.toc-dot.active::before {
+  background: var(--accent-gold) !important;
+  box-shadow: 0 0 8px rgba(200,164,92,0.6);
+  width: 8px !important;
+  height: 8px !important;
+  margin-left: calc(-0.55rem - 4.5px) !important;
+}
+
+.toc-dot.toc-sub.active::before {
+  background: var(--accent-gold) !important;
+  border-color: var(--accent-gold) !important;
+  box-shadow: 0 0 4px rgba(200,164,92,0.4);
+  width: 5px !important;
+  height: 5px !important;
+  margin-left: calc(-0.55rem - 3px) !important;
+}
+
+.toc-dot.active::after {
+  color: var(--accent-gold);
+}
+
+/* ── hover on individual dot ── */
+.toc-dot:hover::before {
+  background: var(--accent-gold) !important;
+  box-shadow: 0 0 6px rgba(200,164,92,0.5);
+}
+
+.toc-dot.toc-sub:hover::before {
+  background: var(--accent-gold) !important;
+  border-color: var(--accent-gold) !important;
+}
+
+.toc-dot:hover::after {
+  color: var(--text-primary);
+}
+
+/* ── pin/unpin toggle button ── */
+.toc-pin-btn {
+  display: none;
+  position: absolute;
+  top: -1.8rem;
+  left: 0.15rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  transition: color var(--transition-fast);
+}
+
+.toc-pin-btn:hover {
+  color: var(--accent-gold);
+}
+
+.side-toc:hover .toc-pin-btn,
+.side-toc.pinned .toc-pin-btn {
+  display: block;
+}
+
+/* ── mobile: hide sidebar, rely on top nav ── */
+@media (max-width: 900px) {
+  .side-toc { display: none; }
+}
+
+/* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
 
@@ -1028,6 +1194,21 @@ body::before {
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════ SIDEBAR TOC ═══════════════════════════════ -->
+<nav class="side-toc" id="sideToc" aria-label="目录导航">
+  <div class="toc-track">
+    <a href="#overview" class="toc-dot" data-label="概况" title="概况 · Visión General"></a>
+    <a href="#location" class="toc-dot" data-label="项目地点" title="项目地点 · Ubicación"></a>
+    <a href="#food" class="toc-dot" data-label="美食" title="美食 · Gastronomía"></a>
+    <a href="#chinese-food" class="toc-dot toc-sub" data-label="中餐 & 超市" title="中餐 & 中国超市"></a>
+    <a href="#housing" class="toc-dot" data-label="居住" title="居住 · Vivienda"></a>
+    <a href="#temp-stay" class="toc-dot toc-sub" data-label="过渡住宿" title="Booking & Airbnb"></a>
+    <a href="#transport" class="toc-dot" data-label="出行" title="出行 · Transporte"></a>
+    <a href="#car-rental" class="toc-dot toc-sub" data-label="租车指南" title="租车指南"></a>
+    <a href="#sim-card" class="toc-dot toc-sub" data-label="电话卡" title="电话卡"></a>
+  </div>
+</nav>
 
 <!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
 <nav class="nav" id="nav">
@@ -1129,7 +1310,7 @@ body::before {
 </section>
 
 <!-- ═══════════════════════════════ LOCATION ═══════════════════════════════ -->
-<section class="section" style="padding-top:2rem; padding-bottom:2rem;">
+<section class="section" id="location" style="padding-top:2rem; padding-bottom:2rem;">
   <div class="section-inner">
     <div class="highlight-row reveal">
       <div class="highlight-card" style="background:var(--bg-card);">
@@ -1821,6 +2002,77 @@ navLinks.querySelectorAll('a').forEach(link => {
     }
   });
 });
+
+// ═══════════════════════════════════════════
+// SIDEBAR TOC — Intersection Observer + Active Tracking
+// ═══════════════════════════════════════════
+(function() {
+  const toc = document.getElementById('sideToc');
+  if (!toc) return;
+
+  const dots = toc.querySelectorAll('.toc-dot');
+  const sectionIds = Array.from(dots).map(d => d.getAttribute('href').replace('#', ''));
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  // ── Build a mapping from dot href → observed section ──
+  // For sub-items (chinese-food, temp-stay, etc.), we observe the parent section
+  // but the dot itself still lights up when its specific element enters viewport
+  const observed = new Set();
+  const sectionEls = [];
+  dots.forEach(dot => {
+    const id = dot.getAttribute('href').replace('#', '');
+    const el = document.getElementById(id);
+    if (el && !observed.has(el)) {
+      observed.add(el);
+      sectionEls.push({ el, id });
+    }
+  });
+
+  // ── Intersection Observer ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const activeId = sectionEls.find(s => s.el === entry.target)?.id;
+        if (activeId) {
+          dots.forEach(d => d.classList.remove('active'));
+          const activeDot = toc.querySelector(`.toc-dot[href="#${activeId}"]`);
+          if (activeDot) activeDot.classList.add('active');
+        }
+      }
+    });
+  }, {
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  });
+
+  sectionEls.forEach(s => observer.observe(s.el));
+
+  // ── Click to scroll ──
+  dots.forEach(dot => {
+    dot.addEventListener('click', function(e) {
+      e.preventDefault();
+      const id = this.getAttribute('href').replace('#', '');
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── Click to pin/unpin ──
+  toc.addEventListener('click', function(e) {
+    if (e.target === toc || e.target.classList.contains('toc-track')) {
+      toc.classList.toggle('pinned');
+    }
+  });
+
+  // ── Double-click anywhere on toc to toggle pin ──
+  const track = toc.querySelector('.toc-track');
+  track.addEventListener('dblclick', function(e) {
+    e.stopPropagation();
+    toc.classList.toggle('pinned');
+  });
+})();
 </script>
 
 </body>
