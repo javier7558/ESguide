@@ -414,15 +414,14 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  height: 100%;
 }
 
 .overview-img-card {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  flex: 1 1 0;
-  min-height: 0;
+  aspect-ratio: 16 / 9;
+  max-height: 200px;
 }
 
 .overview-img-card img {
@@ -1263,12 +1262,12 @@ body::before {
       <div class="overview-visual">
         <div class="overview-img-stack reveal reveal-delay-1">
           <div class="overview-img-card">
-            <img src="assets/images/spain-plaza-espana.jpg" alt="西班牙塞维利亚广场" loading="lazy">
-            <span class="overview-img-label">Plaza de España · Sevilla</span>
+            <img src="assets/images/serranos-gate.jpg" alt="瓦伦西亚海之门" loading="lazy">
+            <span class="overview-img-label">Torres de Serranos · 海之门</span>
           </div>
           <div class="overview-img-card">
-            <img src="assets/images/valencia-arts-sciences.jpg" alt="瓦伦西亚艺术科学城" loading="lazy">
-            <span class="overview-img-label">Ciutat de les Arts i les Ciències</span>
+            <img src="assets/images/mestalla-stadium.jpg" alt="梅斯塔利亚球场" loading="lazy">
+            <span class="overview-img-label">Estadio de Mestalla · 梅斯塔利亚球场</span>
           </div>
           <div class="overview-img-card">
             <img src="assets/images/valencia-beach.jpg" alt="萨贡托海岸线" loading="lazy">
