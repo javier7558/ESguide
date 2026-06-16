@@ -943,6 +943,43 @@ body::before {
   border-color: var(--border-active);
 }
 
+/* ── Quick Nav Buttons (Location Section) ── */
+.quick-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.quick-nav-btn:hover {
+  border-color: var(--accent-gold);
+  background: rgba(200,164,92,0.06);
+}
+.quick-nav-icon {
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+}
+.quick-nav-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+}
+.quick-nav-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 /* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
@@ -1098,6 +1135,30 @@ body::before {
       <div class="highlight-card" style="background:var(--bg-card);">
         <span class="section-label">Ubicación · 项目地点</span>
         <h3>JPXR+MM<br>46500 Puçol, Valencia</h3>
+        <div class="divider-gold" style="margin:1.5rem 0;"></div>
+        <p class="body-md" style="font-size:0.8rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;">快捷导航 · Acceso Rápido</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <a href="#temp-stay" class="quick-nav-btn">
+            <span class="quick-nav-icon">🏨</span>
+            <span class="quick-nav-label">过渡住宿</span>
+            <span class="quick-nav-sub">Booking & Airbnb</span>
+          </a>
+          <a href="#car-rental" class="quick-nav-btn">
+            <span class="quick-nav-icon">🚗</span>
+            <span class="quick-nav-label">租车指南</span>
+            <span class="quick-nav-sub">Sixt · Hertz 比价</span>
+          </a>
+          <a href="#sim-card" class="quick-nav-btn">
+            <span class="quick-nav-icon">📱</span>
+            <span class="quick-nav-label">电话卡</span>
+            <span class="quick-nav-sub">Prepago 办理攻略</span>
+          </a>
+          <a href="#chinese-food" class="quick-nav-btn">
+            <span class="quick-nav-icon">🥢</span>
+            <span class="quick-nav-label">中餐 & 超市</span>
+            <span class="quick-nav-sub">瓦伦西亚华人生活</span>
+          </a>
+        </div>
       </div>
       <div class="location-map-wrap">
         <iframe
@@ -1223,7 +1284,7 @@ body::before {
     </div>
 
     <!-- 中餐精选 -->
-    <div class="highlight-row reveal reveal-delay-4" style="margin-top:2px;">
+    <div class="highlight-row reveal reveal-delay-4" id="chinese-food" style="margin-top:2px;">
       <div class="highlight-image">
         <img src="assets/images/valencia-plaza.jpg" alt="Valencia plaza" loading="lazy">
         <div class="image-caption">
@@ -1353,7 +1414,7 @@ body::before {
     </div>
 
     <!-- 过渡住宿 -->
-    <div class="highlight-row reveal reveal-delay-2" style="margin-top:2px;">
+    <div class="highlight-row reveal reveal-delay-2" id="temp-stay" style="margin-top:2px;">
       <div class="highlight-card">
         <span class="section-label">Alojamiento Temporal · 过渡住宿</span>
         <h3>落地第一站<br>Booking & Airbnb</h3>
@@ -1516,7 +1577,7 @@ body::before {
     </div>
 
     <!-- ═══════ 租车指南 ═══════ -->
-    <div class="highlight-row reveal reveal-delay-4" style="margin-top:4rem;">
+    <div class="highlight-row reveal reveal-delay-4" id="car-rental" style="margin-top:4rem;">
       <div class="highlight-card">
         <span class="section-label">Alquiler de Coches · 租车指南</span>
         <h3>自驾探索<br>地中海海岸线</h3>
@@ -1610,7 +1671,7 @@ body::before {
     </div>
 
     <!-- ═══════ 电话卡指南 ═══════ -->
-    <div class="highlight-row reveal reveal-delay-4" style="margin-top:4rem;">
+    <div class="highlight-row reveal reveal-delay-4" id="sim-card" style="margin-top:4rem;">
       <div class="highlight-card">
         <span class="section-label">SIM y Prepago · 电话卡指南</span>
         <h3>西班牙当地<br>手机卡办理攻略</h3>
